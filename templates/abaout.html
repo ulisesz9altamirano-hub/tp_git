@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Acerca del Sistema{% endblock %}
+
+{% block content %}
+<div class="about-container">
+    <h1>Acerca del Sistema</h1>
+    <p class="subtitle">Información del proyecto y tecnologías utilizadas</p>
+
+    <hr>
+
+    <h3>💻 Descripción del Sistema</h3>
+    <p>Este sistema es una plataforma web desarrollada para la gestión y administración de matrículas de estudiantes. Permite realizar operaciones CRUD completas (Alta, Baja, Modificación y Consulta) sobre un motor de base de datos relacional, además de incluir herramientas avanzadas de filtrado, búsqueda y ordenamiento dinámico.</p>
+
+    <hr>
+
+    <h3>🛠️ Tecnologías Utilizadas</h3>
+    <ul>
+        <li><strong>Backend:</strong> Python con el micro-framework <strong>Flask</strong> para el enrutamiento y la lógica de negocio.</li>
+        <li><strong>Base de Datos:</strong> <strong>PostgreSQL</strong> para la persistencia del modelo de datos de estudiantes.</li>
+        <li><strong>Controladores / Drivers:</strong> <strong>Psycopg2 (binary)</strong> para la conexión y ejecución de consultas SQL seguras desde Python.</li>
+        <li><strong>Contenedores:</strong> <strong>Docker</strong> para el despliegue rápido y aislado de la infraestructura local de la base de datos.</li>
+        <li><strong>Frontend:</strong> Plantillas dinámicas estructuradas con <strong>Jinja2</strong>, basadas en HTML5 estándar y estilizadas mediante CSS3 nativo adaptable (Responsive Design).</li>
+        <li><strong>Variables de Entorno:</strong> <strong>python-dotenv</strong> para resguardar las credenciales sensibles de conexión de manera segura.</li>
+    </ul>
+
+    <hr>
+
+    <h3>🎓 Marco Académico</h3>
+    <ul>
+        <li><strong>Estudiante:</strong> Ulises Altamirano</li>
+        <li><strong>Institución:</strong> Instituto Nivel Superior 9023</li>
+        <li><strong>Carrera:</strong> Tecnicatura Superior en Desarrollo de Software</li>
+        <li><strong>Espacio Curricular:</strong> Programación 2</li>
+        <li><strong>Evaluación:</strong> Trabajo Práctico N.º 3 - Flask + HTML</li>
+        <li><strong>Ciclo Lectivo:</strong> 2026</li>
+    </ul>
+
+    <div class="form-actions" style="margin-top: 30px;">
+        <a href="{{ url_for('index') }}" class="btn">Volver al Inicio</a>
+    </div>
+</div>
+{% endblock %}

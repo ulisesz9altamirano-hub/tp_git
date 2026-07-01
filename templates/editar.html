@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Estudiante{% endblock %}
+
+{% block content %}
+<h1>Editar Estudiante</h1>
+<p class="subtitle">Modifique los campos necesarios para actualizar la información del alumno</p>
+
+<hr>
+
+<form method="POST" action="{{ url_for('editar', id=estudiante.id) }}" class="crud-form">
+    <div class="form-group">
+        <label for="dni">DNI (Obligatorio):</label>
+        <input type="text" id="dni" name="dni" value="{{ estudiante.dni }}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="apellido">Apellido (Obligatorio):</label>
+        <input type="text" id="apellido" name="apellido" value="{{ estudiante.apellido }}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="nombre">Nombre (Obligatorio):</label>
+        <input type="text" id="nombre" name="nombre" value="{{ estudiante.nombre }}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="telefono">Teléfono:</label>
+        <input type="text" id="telefono" name="telefono" value="{{ estudiante.telefono or '' }}">
+    </div>
+
+    <div class="form-group">
+        <label for="edad">Edad:</label>
+        <input type="number" id="edad" name="edad" value="{{ estudiante.edad or '' }}" min="1" max="120">
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="{{ estudiante.email or '' }}">
+    </div>
+
+    <div class="form-group">
+        <label for="carrera">Carrera (Obligatorio):</label>
+        <input type="text" id="carrera" name="carrera" value="{{ estudiante.carrera }}" required>
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="btn">Actualizar</button>
+        <a href="{{ url_for('index') }}" class="btn secondary">Cancelar</a>
+    </div>
+</form>
+{% endblock %}

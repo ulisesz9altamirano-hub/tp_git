@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio - Sistema de Gestión de Estudiantes{% endblock %}
+
+{% block content %}
+<h1>Sistema de Gestión de Estudiantes</h1>
+<p class="subtitle">Panel de administración académica - Ciclo Lectivo 2026</p>
+
+<nav class="actions">
+    <a href="{{ url_for('agregar') }}" class="btn">➕ Agregar Estudiante</a>
+    <a href="{{ url_for('about') }}" class="btn info">ℹ️ Sobre el Sistema</a>
+</nav>
+
+<hr>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="flash-container">
+            {% for category, message in messages %}
+                <div class="flash {{ category }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+<form method="GET" action="{{ url_for('index') }}" class="search-sort-form">
+    <div class="search-group">
+        <input type="text" name="buscar" placeholder="Buscar por DNI, Apellido o Carrera..." value="{{ request.args.get('buscar', '') }}">
+    </div>
+    <div class="sort-group">
+        <label for="ordenar">Ordenar por:</label>
+        <select name="ordenar" id="ordenar" onchange="this.form.submit()">
+            <option value="fecha_registro" {% if request.args.get('ordenar') == 'fecha_registro' %}selected{% endif %}>Fecha de Registro</option>
+            <option value="apellido" {% if request.args.get('ordenar') == 'apellido' %}selected{% endif %}>Apellido</option>
+            <option value="carrera" {% if request.args.get('ordenar') == 'carrera' %}selected{% endif %}>Carrera</option>
+        </select>
+    </div>
+</form>
+
+<div class="table-responsive">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>DNI</th>
+                <th>Apellido</th>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Carrera</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for estudiante in estudiantes %}
+            <tr>
+                <td><strong>{{ estudiante.id }}</strong></td>
+                <td>{{ estudiante.dni }}</td>
+                <td>{{ estudiante.apellido }}</td>
+                <td>{{ estudiante.nombre }}</td>
+                <td>{{ estudiante.edad or '-' }}</td>
+                <td>{{ estudiante.email or '-' }}</td>
+                <td>{{ estudiante.telefono or '-' }}</td>
+                <td>{{ estudiante.carrera }}</td>
+                <td>
+                    <a class="link edit" href="{{ url_for('editar', id=estudiante.id) }}">✏️ Editar</a>
+                    <a class="link delete" href="{{ url_for('eliminar', id=estudiante.id) }}" onclick="return confirm('¿Estás seguro de que deseas eliminar a {{ estudiante.nombre }} {{ estudiante.apellido }}?')">❌ Eliminar</a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="9" class="empty">No hay estudiantes cargados en el sistema o no coinciden con la búsqueda.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

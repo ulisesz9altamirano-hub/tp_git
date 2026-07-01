@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Agregar Estudiante{% endblock %}
+
+{% block content %}
+<h1>Agregar Nuevo Estudiante</h1>
+<p class="subtitle">Complete los datos para registrar un nuevo alumno en el sistema</p>
+
+<hr>
+
+<form method="POST" action="{{ url_for('agregar') }}" class="crud-form">
+    <div class="form-group">
+        <label for="dni">DNI (Obligatorio):</label>
+        <input type="text" id="dni" name="dni" required placeholder="Ej: 30111222">
+    </div>
+
+    <div class="form-group">
+        <label for="apellido">Apellido (Obligatorio):</label>
+        <input type="text" id="apellido" name="apellido" required placeholder="Ej: Pérez">
+    </div>
+
+    <div class="form-group">
+        <label for="nombre">Nombre (Obligatorio):</label>
+        <input type="text" id="nombre" name="nombre" required placeholder="Ej: María">
+    </div>
+
+    <div class="form-group">
+        <label for="telefono">Teléfono:</label>
+        <input type="text" id="telefono" name="telefono" placeholder="Ej: 2615551234">
+    </div>
+
+    <div class="form-group">
+        <label for="edad">Edad:</label>
+        <input type="number" id="edad" name="edad" min="1" max="120" placeholder="Ej: 22">
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Ej: maria.perez@email.com">
+    </div>
+
+    <div class="form-group">
+        <label for="carrera">Carrera (Obligatorio):</label>
+        <input type="text" id="carrera" name="carrera" required placeholder="Ej: Tecnicatura en Desarrollo de Software">
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="btn">Guardar</button>
+        <a href="{{ url_for('index') }}" class="btn secondary">Volver</a>
+    </div>
+</form>
+{% endblock %}

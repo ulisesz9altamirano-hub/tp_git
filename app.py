@@ -12,11 +12,11 @@ app.secret_key = "clave_secreta_para_mensajes"
 
 def get_connection():
     return psycopg2.connect(
-        host=os.getenv("DB_HOST", "localhost"),
-        port=os.getenv("DB_PORT", "5432"),
-        dbname=os.getenv("DB_NAME", "programacion"),       
-        user=os.getenv("DB_USER", "root"),               
-        password=os.getenv("DB_PASSWORD", "Ulises_46326980"), 
+        host=os.getenv("DB_HOST", ""),
+        port=os.getenv("DB_PORT", ""),
+        dbname=os.getenv("DB_NAME", ""),       
+        user=os.getenv("DB_USER", ""),               
+        password=os.getenv("DB_PASSWORD", ""), 
         cursor_factory=RealDictCursor,
     )
 
